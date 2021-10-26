@@ -10,6 +10,10 @@ public class Kartya extends BankiSzolgaltatas{
         this.kartyaSzam = kartyaSzam;
     }
 
+    public Szamla getSzamla() {
+        return szamla;
+    }
+
     public String getKartyaSzam() {
         return kartyaSzam;
     }

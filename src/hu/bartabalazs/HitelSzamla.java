@@ -2,7 +2,7 @@ package hu.bartabalazs;
 
 public class HitelSzamla extends Szamla{
 
-    private int hitelKeret;
+    private final int hitelKeret;
 
     public HitelSzamla(Tulajdonos tulajdonos, int hitelKeret) {
         super(tulajdonos);
@@ -16,7 +16,7 @@ public class HitelSzamla extends Szamla{
     @Override
     public boolean kivesz(int osszeg) {
         boolean sikeres = true;
-        if (osszeg >= this.hitelKeret) {
+        if (osszeg > this.hitelKeret) {
             sikeres = false;
         }
         return sikeres;
