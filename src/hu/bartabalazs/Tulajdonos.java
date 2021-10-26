@@ -14,4 +14,5 @@ public final class Tulajdonos {
     public void setNev(String nev) {
         this.nev = nev;
     }
+
 }
