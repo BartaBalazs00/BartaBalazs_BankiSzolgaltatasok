@@ -1,8 +1,8 @@
 package hu.bartabalazs;
 
 public class Kartya extends BankiSzolgaltatas{
-    private Szamla szamla;
-    private String kartyaSzam;
+    private final Szamla szamla;
+    private final String kartyaSzam;
 
     public Kartya(Tulajdonos tulajdonos, Szamla szamla, String kartyaSzam) {
         super(tulajdonos);
