@@ -1,8 +1,8 @@
 package hu.bartabalazs;
 
-public class BankiSzolgaltatas {
+public abstract class BankiSzolgaltatas {
 
-    Tulajdonos tulajdonos;
+    private Tulajdonos tulajdonos;
 
     public BankiSzolgaltatas(Tulajdonos tulajdonos) {
         this.tulajdonos = tulajdonos;
