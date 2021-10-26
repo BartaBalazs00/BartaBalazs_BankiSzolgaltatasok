@@ -16,4 +16,9 @@ public abstract class Szamla extends BankiSzolgaltatas{
         this.aktualisEgyenleg+=osszeg;
     }
     public abstract boolean kivesz(int osszeg);
+
+    public Kartya UjKartya(String kartyaSzam){
+        Kartya ujKartya = new Kartya(getTulajdonos(),Szamla.this , kartyaSzam);
+        return ujKartya;
+    }
 }
