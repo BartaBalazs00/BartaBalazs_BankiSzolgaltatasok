@@ -3,7 +3,7 @@ package hu.bartabalazs;
 public class MegtakaritasSzamla extends Szamla{
 
     private double kamat;
-    private static double alapkamat;
+    private static double alapkamat = 1.1;
 
     public MegtakaritasSzamla(Tulajdonos tulajdonos) {
         super(tulajdonos);
@@ -14,19 +14,21 @@ public class MegtakaritasSzamla extends Szamla{
         return kamat;
     }
 
-    public void setKamaet(int kamat) {
+    public void setKamat(double kamat) {
         this.kamat = kamat;
     }
 
     @Override
-    public boolean kivesz(int osszeg) {
+    public boolean kivesz(double osszeg) {
         boolean siekrult = true;
-        if(osszeg >= getAktualisEgyenleg()){
+        if(osszeg > getAktualisEgyenleg()){
             siekrult = false;
+        } else {
+            setAktualisEgyenleg(osszeg);
         }
         return siekrult;
     }
     public void kamatJovaIras(){
-
+        setAktualisEgyenleg(getAktualisEgyenleg()*kamat);
     }
 }

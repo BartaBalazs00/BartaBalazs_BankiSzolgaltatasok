@@ -2,30 +2,29 @@ package hu.bartabalazs;
 
 public abstract class Szamla extends BankiSzolgaltatas{
 
-    private int aktualisEgyenleg;
+    private double aktualisEgyenleg;
 
     public Szamla(Tulajdonos tulajdonos) {
         super(tulajdonos);
     }
 
-    public int getAktualisEgyenleg() {
+    public double getAktualisEgyenleg() {
         return aktualisEgyenleg;
     }
 
-    public void befizet(int osszeg){
+    public void befizet(double osszeg){
         if(osszeg>0){
             this.aktualisEgyenleg+=osszeg;
         }
     }
 
-    protected void setAktualisEgyenleg(int osszeg) {
+    protected void setAktualisEgyenleg(double osszeg) {
         this.aktualisEgyenleg -= osszeg;
     }
 
-    public abstract boolean kivesz(int osszeg);
+    public abstract boolean kivesz(double osszeg);
 
     public Kartya UjKartya(String kartyaSzam){
-        Kartya ujKartya = new Kartya(this.getTulajdonos(),Szamla.this , kartyaSzam);
-        return ujKartya;
+        return new Kartya(this.getTulajdonos(), this, kartyaSzam);
     }
 }

@@ -14,7 +14,7 @@ public class HitelSzamla extends Szamla{
     }
 
     @Override
-    public boolean kivesz(int osszeg) {
+    public boolean kivesz(double osszeg) {
         boolean sikeres = true;
         if (osszeg > getAktualisEgyenleg()+hitelKeret) {
             sikeres = false;
