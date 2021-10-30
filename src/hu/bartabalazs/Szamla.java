@@ -18,6 +18,10 @@ public abstract class Szamla extends BankiSzolgaltatas{
         }
     }
 
+    private void setAktualisEgyenleg(int aktualisEgyenleg) {
+        this.aktualisEgyenleg = aktualisEgyenleg;
+    }
+
     public abstract boolean kivesz(int osszeg);
 
     public Kartya UjKartya(String kartyaSzam){
