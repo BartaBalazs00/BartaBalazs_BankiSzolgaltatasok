@@ -18,7 +18,7 @@ public abstract class Szamla extends BankiSzolgaltatas{
         }
     }
 
-    private void setAktualisEgyenleg(int osszeg) {
+    protected void setAktualisEgyenleg(int osszeg) {
         this.aktualisEgyenleg -= osszeg;
     }
 
