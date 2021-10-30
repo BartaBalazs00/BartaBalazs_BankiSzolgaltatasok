@@ -4,23 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    Szamla[] szamlaLista;
-
-    public Bank(int szamlakSzama) {
-        szamlaLista = new Szamla[szamlakSzama];
+    //Szamla[] szamlaLista;
+    List<Szamla> szamlaLista = new ArrayList<>();
+    //private int szamlakSzama = 0;
+    public Bank() {
+        //szamlaLista = new Szamla[szamlakSzama];
     }
     public Szamla szamlaNyitas(Tulajdonos tulajdonos, int hitelKeret){
         Szamla szamla;
-        if(hitelKeret>0){
-            HitelSzamla hitelSzamla = new HitelSzamla(tulajdonos, hitelKeret);
-            szamlaLista[0] = hitelSzamla;
-            szamla = hitelSzamla;
-        } else {
-            MegtakaritasSzamla megtakaritasSzamla = new MegtakaritasSzamla(tulajdonos);
-            szamlaLista[0] = megtakaritasSzamla;
-            szamla = megtakaritasSzamla;
+        try {
+            if (hitelKeret > 0) {
+                HitelSzamla hitelSzamla = new HitelSzamla(tulajdonos, hitelKeret);
+                //szamlaLista[this.szamlakSzama] = hitelSzamla;
+                szamlaLista.add(hitelSzamla);
+                szamla = hitelSzamla;
+            } else {
+                MegtakaritasSzamla megtakaritasSzamla = new MegtakaritasSzamla(tulajdonos);
+                //szamlaLista[this.szamlakSzama] = megtakaritasSzamla;
+                szamlaLista.add(megtakaritasSzamla);
+                szamla = megtakaritasSzamla;
+            }
+            //this.szamlakSzama++;
+            return szamla;
         }
-        return szamla;
+        catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
     }
     public int osszEgyenleg(Tulajdonos tulajdonos){
         int egyenleg = 0;
@@ -35,22 +46,24 @@ public class Bank {
         boolean elsoTalalat = false;
         int i = 0;
         int index = -1;
-        while (!elsoTalalat || i!=szamlaLista.length) {
-            if(szamlaLista[i].getTulajdonos().equals(tulajdonos)){
-                index = i;
-                elsoTalalat = true;
+        while (!elsoTalalat && i<=szamlaLista.size()) {
+            if(szamlaLista.get(i) != null){
+                if(szamlaLista.get(i).getTulajdonos().getNev().equals(tulajdonos.getNev())){
+                    index = i;
+                    elsoTalalat = true;
+                }
+                i++;
             }
-            i++;
         }
 
-        for (int j = index+1; j < szamlaLista.length; j++) {
-            if (szamlaLista[j].getTulajdonos().equals(tulajdonos)){
-                if(szamlaLista[j].getAktualisEgyenleg() > szamlaLista[j].getAktualisEgyenleg()){
+        for (int j = index+1; j < szamlaLista.size(); j++) {
+            if (szamlaLista.get(j).getTulajdonos().equals(tulajdonos)){
+                if(szamlaLista.get(j).getAktualisEgyenleg() > szamlaLista.get(j).getAktualisEgyenleg()){
                     index = j;
                 }
             }
         }
-        return szamlaLista[index];
+        return szamlaLista.get(index);
     }
     public long osszHitelKeret(){
         int osszeg = 0;
