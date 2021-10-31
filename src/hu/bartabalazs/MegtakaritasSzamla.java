@@ -24,7 +24,7 @@ public class MegtakaritasSzamla extends Szamla{
         if(osszeg > getAktualisEgyenleg()){
             siekrult = false;
         } else {
-            setAktualisEgyenleg(osszeg);
+            setAktualisEgyenleg(getAktualisEgyenleg()-osszeg);
         }
         return siekrult;
     }

@@ -19,7 +19,7 @@ public class HitelSzamla extends Szamla{
         if (osszeg > getAktualisEgyenleg()+hitelKeret) {
             sikeres = false;
         } else {
-            setAktualisEgyenleg(osszeg);
+            setAktualisEgyenleg(getAktualisEgyenleg()-osszeg);
         }
         return sikeres;
     }

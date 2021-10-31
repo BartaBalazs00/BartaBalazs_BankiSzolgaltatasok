@@ -18,7 +18,6 @@ public class Kartya extends BankiSzolgaltatas{
         return kartyaSzam;
     }
     public boolean vasarlas(int osszeg){
-        boolean sikeres = szamla.kivesz(osszeg);
-        return sikeres;
+        return szamla.kivesz(osszeg);
     }
 }

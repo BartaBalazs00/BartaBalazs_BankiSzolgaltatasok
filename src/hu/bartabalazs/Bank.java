@@ -43,32 +43,35 @@ public class Bank {
         return egyenleg;
     }
     public Szamla getLegnagyobbEgyenlegoSzamla(Tulajdonos tulajdonos){
-        boolean elsoTalalat = false;
         int i = 0;
         int index = -1;
-        while (!elsoTalalat && i<=szamlaLista.size()) {
+        while (index == -1 && i<szamlaLista.size()) {
             if(szamlaLista.get(i) != null){
                 if(szamlaLista.get(i).getTulajdonos().getNev().equals(tulajdonos.getNev())){
                     index = i;
-                    elsoTalalat = true;
                 }
                 i++;
             }
         }
 
-        for (int j = index+1; j < szamlaLista.size(); j++) {
-            if (szamlaLista.get(j).getTulajdonos().equals(tulajdonos)){
-                if(szamlaLista.get(j).getAktualisEgyenleg() > szamlaLista.get(j).getAktualisEgyenleg()){
-                    index = j;
+        if(index != -1){
+            for (int j = index+1; j < szamlaLista.size(); j++) {
+                if (szamlaLista.get(j).getTulajdonos().getNev().equals(tulajdonos.getNev())){
+                    if(szamlaLista.get(j).getAktualisEgyenleg() > szamlaLista.get(index).getAktualisEgyenleg()){
+                        index = j;
+                    }
                 }
             }
         }
         return szamlaLista.get(index);
     }
-    public long osszHitelKeret(){
+    public long getOsszHitelKeret(){
         int osszeg = 0;
+
         for (Szamla szamla: szamlaLista) {
-            osszeg += ((HitelSzamla)szamla).getHitelKeret();
+            if(szamla.getClass().getTypeName().contains("HitelSzamla")){
+                osszeg += ((HitelSzamla)szamla).getHitelKeret();
+            }
         }
         return osszeg;
     }
